@@ -1,13 +1,13 @@
 import Banner from '@/components/banner'
-import Header from '@/components/header'
+import RestaurantList from '@/components/restaurant/restaurant-list'
 import Search from '@/components/search'
 
 export default function Home() {
   return (
-    <div>
-      <Header />
+    <main className="lg:container lg:mx-auto">
       <Search />
       <Banner />
-    </div>
+      <RestaurantList />
+    </main>
   )
 }

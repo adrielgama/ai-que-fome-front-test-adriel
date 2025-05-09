@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+import { ProgressProviderWrapper } from '@/providers/progress'
+
 import './globals.css'
 
 const inter = Nunito({
@@ -19,7 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <ProgressProviderWrapper>
+          <Header />
+          {children}
+          <Footer />
+        </ProgressProviderWrapper>
+      </body>
     </html>
   )
 }

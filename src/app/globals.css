@@ -6,6 +6,7 @@
 :root {
   --neutral-0: #ffffff;
   --neutral-50: #f5f6f9;
+  --neutral-100: #eef0f5;
   --neutral-200: #cdd1d9;
   --neutral-400: #a8adb7;
   --neutral-500: #6d6f73; /* TEXT LIGHT */
@@ -64,6 +65,7 @@
 
   --color-neutral-0: var(--neutral-0);
   --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
   --color-neutral-200: var(--neutral-200);
   --color-neutral-400: var(--neutral-400);
   --color-neutral-500: var(--neutral-500);
