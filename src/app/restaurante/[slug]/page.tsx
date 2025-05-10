@@ -5,8 +5,7 @@ import { Restaurant } from '@/types/restaurants'
 import restaurants from '@/data/restaurants.json'
 import RestaurantHeader from './_components/restaurant-header'
 import CategoriesList from './_components/categories-list'
-import { use } from 'react'
-import { getRestaurantProducts } from '@/lib/getRestaurantProducts'
+import { getRestaurantProducts } from '@/lib/get-restaurant-products'
 import ClientRestaurantLoader from './_components/restaurant-loader'
 
 type Params = {

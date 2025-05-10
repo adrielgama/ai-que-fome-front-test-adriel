@@ -1,3 +1,7 @@
+type Tags = 'vegan' | 'spiced'
+type Sizes = { label: string; price: number; discount?: number }[]
+type OptionItem = { name: string; price: number }
+
 type Product = {
   id: number
   name: string
@@ -7,10 +11,11 @@ type Product = {
   description?: string
   tags?: Tags[] | string[]
   options?: {
-    sizes?: { label: string; price: number; discount?: number }[]
+    sizes?: Sizes
     accompaniments?: string[]
-    drinks?: { name: string; price: number }[]
-    utensils?: { name: string; price: number }[]
+    drinks?: OptionItem[]
+    utensils?: OptionItem[]
+    others?: OptionItem[]
   }
   categoryId?: number
 }
@@ -24,6 +29,4 @@ type Category = {
   products: Product[]
 }
 
-type Tags = 'vegan' | 'spiced'
-
-export type { Product, Category, Tags }
+export type { Product, Category, Tags, Sizes, OptionItem }
