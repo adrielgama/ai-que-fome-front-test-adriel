@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Footer() {
   return (
     <footer className="space-y-2 bg-neutral-100 px-4 py-6">

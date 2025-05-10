@@ -1,13 +1,16 @@
 import { ChevronRight, MapPin } from 'lucide-react'
 import { AiqBranding } from './icons/aiqbranding'
 import { User as UserIcon } from './icons/user'
+import Link from 'next/link'
 
 export default function Header() {
   return (
     <header className="h-20 bg-purple-500 px-4 pt-4 text-white">
       <div className="flex items-center justify-between gap-6 lg:container lg:mx-auto">
         <div className="flex items-center gap-6 md:gap-12">
-          <AiqBranding />
+          <Link href="/">
+            <AiqBranding />
+          </Link>
           <div className="flex items-center gap-2.5">
             <MapPin />
             <div className="flex flex-col gap-0.5 font-bold">

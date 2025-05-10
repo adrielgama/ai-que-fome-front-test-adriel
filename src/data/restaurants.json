@@ -4,17 +4,455 @@
     "name": "Matsuri Concept",
     "slug": "matsuri-concept",
     "logo": "/sellers/matsuri.png",
-    "deliveryFee": 0,
+    "deliveryFee": 4.99,
     "hasDeliveryPromotion": false,
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
-    "description": "Descrição do seller"
+    "description": "Descrição do seller",
+    "categories": [
+      {
+        "id": 1,
+        "name": "Niguiris",
+        "slug": "niguiris",
+        "hasPromotion": true,
+        "products": [
+          {
+            "id": 1,
+            "name": "Niguiri de camarão",
+            "price": 19.90,
+            "description": "niguiri de camarão com molho de shoyu",
+            "options": {
+              "sizes": [
+                {
+                  "label": "Médio",
+                  "price": 22.90
+                },
+                {
+                  "label": "Grande",
+                  "price": 28.90
+                }
+              ],
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            },
+            "categoryId": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Ceviches",
+        "slug": "ceviche",
+        "description": "um prato super refrescante de peixe fatiado e marinado com limão",
+        "hasPromotion": true,
+        "products": [
+          {
+            "id": 2,
+            "name": "Ceviche de salmão",
+            "image": "/images/ceviche.png",
+            "price": 19.90,
+            "description": "salmão temperado com limão, cebola e pimenta",
+            "options": {
+              "sizes": [
+                {
+                  "label": "Médio",
+                  "price": 22.90,
+                  "discount": 19.90
+                },
+                {
+                  "label": "Grande",
+                  "price": 28.90
+                }
+              ],
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            },
+            "categoryId": 2
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Temakis",
+        "slug": "temakis",
+        "description": "sushi em forma de cone com salmão e cream cheese",
+        "products": [
+          {
+            "id": 3,
+            "name": "Califórnia",
+            "price": 17.00,
+            "discount": 13.99,
+            "description": "Kani, pepino e maçã ou manga",
+            "options": {
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            },
+            "categoryId": 3
+          },
+          {
+            "id": 4,
+            "name": "Califórnia",
+            "price": 13.99,
+            "tags": [
+              "vegan"
+            ],
+            "description": "Kani, pepino e maçã ou manga",
+            "options": {
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            },
+            "categoryId": 3
+          },
+          {
+            "id": 5,
+            "name": "Filadélfia",
+            "price": 13.99,
+            "description": "Arroz, salmão fresco, cream cheese e cebolinha",
+            "options": {
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            },
+            "categoryId": 3
+          },
+          {
+            "id": 6,
+            "name": "Mix",
+            "price": 13.99,
+            "tags": [
+              "spiced"
+            ],
+            "description": "Escolha 3 ingredientes: shimeji, alface americana, rúcula, pepino, tomate seco, cream cheese, maionese, goiabada, banana, requeijão, molho de maracujá, manga, maçã e morango.",
+            "options": {
+              "sizes": [
+                {
+                  "label": "Médio",
+                  "price": 22.90,
+                  "discount": 19.90
+                },
+                {
+                  "label": "Grande",
+                  "price": 28.90
+                }
+              ],
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            }
+          },
+          {
+            "id": 7,
+            "name": "Salmão picante",
+            "price": 13.99,
+            "tags": [
+              "spiced"
+            ],
+            "description": "Alga, arroz, salmão fresco, pimenta e cebolinha",
+            "options": {
+              "sizes": [
+                {
+                  "label": "Médio",
+                  "price": 22.90
+                },
+                {
+                  "label": "Grande",
+                  "price": 28.90
+                }
+              ],
+              "accompaniments": [
+                "shoyu",
+                "gengibre",
+                "wasabi",
+                "sem acompanhamentos"
+              ],
+              "drinks": [
+                {
+                  "name": "coca-cola",
+                  "price": 5.00
+                },
+                {
+                  "name": "fanta laranja",
+                  "price": 5.00
+                },
+                {
+                  "name": "guaraná antártica",
+                  "price": 5.00
+                },
+                {
+                  "name": "suco prats laranja",
+                  "price": 6.00
+                },
+                {
+                  "name": "água sem gás",
+                  "price": 3.00
+                }
+              ],
+              "utensils": [
+                {
+                  "name": "hashi",
+                  "price": 0
+                },
+                {
+                  "name": "garfo e faca descartável",
+                  "price": 1.00
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Bebidas",
+        "slug": "bebidas",
+        "products": []
+      },
+      {
+        "id": 5,
+        "name": "Sobremesas",
+        "slug": "sobremesas",
+        "products": [
+          {
+            "id": 6,
+            "name": "Biscoito da sorte",
+            "price": 2.00,
+            "categoryId": 5
+          },
+          {
+            "id": 7,
+            "name": "Rolinho primavera",
+            "price": 8.00,
+            "categoryId": 5
+          },
+          {
+            "id": 8,
+            "name": "Guioza",
+            "price": 6.00,
+            "categoryId": 5
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 2,
@@ -26,9 +464,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -43,9 +481,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -60,9 +498,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -77,9 +515,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -94,9 +532,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -111,9 +549,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -128,9 +566,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -145,9 +583,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -162,9 +600,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -179,9 +617,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -196,9 +634,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -213,9 +651,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -230,9 +668,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -247,9 +685,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -264,9 +702,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -281,9 +719,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -298,9 +736,9 @@
     "isOpen": true,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -315,9 +753,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -332,9 +770,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -349,9 +787,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -366,9 +804,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -383,9 +821,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"
@@ -400,9 +838,9 @@
     "isOpen": false,
     "rating": 4.7,
     "distance": 5.2,
-    "minimumOrder": 35,
+    "minimumOrder": 15,
     "deliveryTime": "30-40 min",
-    "freeDeliveryThreshold": 15,
+    "freeDeliveryThreshold": 35,
     "openAt": "10:00",
     "closedAt": "20:00",
     "description": "Descrição do seller"

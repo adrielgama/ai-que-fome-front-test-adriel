@@ -1,10 +1,29 @@
 type Product = {
   id: number
-  title: string
-  image: string
+  name: string
   price: number
-  review: number
-  category: string
+  image?: string
+  discount?: number
+  description?: string
+  tags?: Tags[] | string[]
+  options?: {
+    sizes?: { label: string; price: number; discount?: number }[]
+    accompaniments?: string[]
+    drinks?: { name: string; price: number }[]
+    utensils?: { name: string; price: number }[]
+  }
+  categoryId?: number
 }
 
-export type { Product }
+type Category = {
+  id: number
+  name: string
+  slug: string
+  description?: string
+  hasPromotion?: boolean
+  products: Product[]
+}
+
+type Tags = 'vegan' | 'spiced'
+
+export type { Product, Category, Tags }

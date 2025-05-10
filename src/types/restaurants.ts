@@ -1,3 +1,5 @@
+import { Category } from './products'
+
 type Restaurant = {
   id: number
   name: string
@@ -14,6 +16,7 @@ type Restaurant = {
   description?: string
   hasDeliveryPromotion?: boolean
   isOpen?: boolean
+  categories: Category[]
 }
 
 export type { Restaurant }
