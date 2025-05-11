@@ -7,6 +7,7 @@ import { Plus } from '@/components/icons/plus'
 import { Button } from '@/components/ui/button'
 import { formatCurrency } from '@/lib/formatter'
 import { Product } from '@/types/products'
+import { memo, useMemo } from 'react'
 
 interface DetailHeaderProps {
   product: Product
@@ -16,14 +17,17 @@ interface DetailHeaderProps {
   onDecrease?: () => void
 }
 
-export default function DetailHeader({
+const DetailHeader = memo(function DetailHeader({
   product,
   quantity,
   total,
   onIncrease,
   onDecrease,
 }: DetailHeaderProps) {
-  const unitPrice = product.discount || product.price
+  const unitPrice = useMemo(
+    () => product.discount || product.price,
+    [product.discount, product.price]
+  )
 
   return (
     <div className="border-b-4 border-neutral-100">
@@ -32,6 +36,7 @@ export default function DetailHeader({
           src={product.image ?? '/images/placeholder.svg'}
           alt={product.name}
           fill
+          priority
           className="object-cover lg:object-contain"
         />
       </div>
@@ -77,6 +82,7 @@ export default function DetailHeader({
                 onClick={onDecrease}
                 className="size-6 text-teal-400 hover:bg-transparent hover:text-teal-500/80"
                 asChild
+                aria-label="Remover produto"
               >
                 <Trash2 />
               </Button>
@@ -89,6 +95,7 @@ export default function DetailHeader({
                 onClick={onIncrease}
                 className="size-6 text-teal-400 hover:bg-transparent hover:text-teal-500/80"
                 asChild
+                aria-label="Adicionar produto"
               >
                 <Plus />
               </Button>
@@ -98,4 +105,6 @@ export default function DetailHeader({
       </div>
     </div>
   )
-}
+})
+
+export default DetailHeader

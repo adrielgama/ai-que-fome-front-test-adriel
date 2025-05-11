@@ -13,7 +13,7 @@ import {
 } from './detail'
 import DetailHeader from './detail-header'
 import DetailSection from './detail-section'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { TicketItem, useProductStore } from '@/store/product-store'
 import { useSearchParams } from 'next/navigation'
 
@@ -25,7 +25,7 @@ interface ProductDetailClientProps {
 export default function ProductDetail({ product }: ProductDetailClientProps) {
   const searchParams = useSearchParams()
   const editId = searchParams.get('edit')
-  const { addToTicket, setPendingFooter } = useProductStore()
+  const { setPendingFooter } = useProductStore()
   const [isEditLoaded, setIsEditLoaded] = useState(false)
   const [isAdding, setIsAdding] = useState(false)
 
@@ -52,6 +52,18 @@ export default function ProductDetail({ product }: ProductDetailClientProps) {
     hasRequiredOptions,
     confirmAndGoToCart,
   } = useProductOptions(product)
+
+  const handleConfirm = useCallback(() => {
+    if (isAdding) return
+    setIsAdding(true)
+    confirmAndGoToCart()
+    setTimeout(() => setIsAdding(false), 1000)
+  }, [isAdding, confirmAndGoToCart])
+
+  const pendingFooter = useMemo(
+    () => (hasRequiredOptions ? { onConfirm: handleConfirm } : null),
+    [hasRequiredOptions, handleConfirm]
+  )
 
   useEffect(() => {
     if (editId && !isEditLoaded) {
@@ -81,34 +93,16 @@ export default function ProductDetail({ product }: ProductDetailClientProps) {
   ])
 
   useEffect(() => {
-    if (hasRequiredOptions) {
-      setPendingFooter({
-        onConfirm: () => {
-          if (isAdding) return
-          setIsAdding(true)
-          confirmAndGoToCart()
-          setTimeout(() => setIsAdding(false), 1000)
-        },
-      })
-    } else {
-      setPendingFooter(null)
-    }
-
+    setPendingFooter(pendingFooter)
     return () => setPendingFooter(null)
-  }, [
-    hasRequiredOptions,
-    isAdding,
-    confirmAndGoToCart,
-    addToTicket,
-    product,
-    quantity,
-    selectedSize,
-    selectedDrinks,
-    selectedAccompaniments,
-    selectedOthers,
-    selectedUtensils,
-    notes,
-  ])
+  }, [pendingFooter, setPendingFooter])
+
+  const handleNotesChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setNotes(e.target.value)
+    },
+    [setNotes]
+  )
 
   return (
     <main>
@@ -194,7 +188,7 @@ export default function ProductDetail({ product }: ProductDetailClientProps) {
 ex: tirar algum ingrediente, ponto do prato"
           className="resize-none rounded-sm border-neutral-200 px-3 py-2.5 shadow-none placeholder:text-sm placeholder:font-semibold placeholder:text-neutral-500"
           value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          onChange={handleNotesChange}
         />
       </div>
     </main>

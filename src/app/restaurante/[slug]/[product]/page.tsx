@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 
 import restaurants from '@/data/restaurants.json'
 import { Product } from '@/types/products'
-import { useMemo } from 'react'
 
 const ProductDetail = dynamic(() => import('./_components/product-detail'))
 
@@ -11,8 +10,8 @@ interface ProductPageParams {
   params: { slug: string; product: string }
 }
 
-export default function ProductPage({ params }: ProductPageParams) {
-  const { slug, product } = params
+export default async function ProductPage({ params }: ProductPageParams) {
+  const { slug, product } = await params
   const restaurant = restaurants.find((r) => r.slug === slug)
 
   if (!restaurant) return notFound()
@@ -26,15 +25,13 @@ export default function ProductPage({ params }: ProductPageParams) {
       })) as Product[]
     }) ?? []
 
-  const found = allProducts?.find((p) => p.id === Number(product))
+  const found = allProducts.find((p) => p.id === Number(product))
 
-  const memoizedProduct = useMemo(() => found, [found])
-
-  if (!memoizedProduct) return notFound()
+  if (!found) return notFound()
 
   return (
     <div className="flex-grow lg:container lg:mx-auto">
-      <ProductDetail product={memoizedProduct} restaurantSlug={slug} />
+      <ProductDetail product={found} restaurantSlug={slug} />
     </div>
   )
 }

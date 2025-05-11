@@ -41,9 +41,9 @@ export default function CategoriesList({ categories }: CategoriesListProps) {
           <AccordionTrigger className="hover:bg-neutral-50/50 hover:no-underline lg:cursor-pointer">
             <div className="space-y-1">
               <div className="flex items-center gap-1">
-                <h3 className="text-base font-bold text-neutral-900">
+                <h4 className="text-base font-bold text-neutral-900">
                   {category.name}
-                </h3>
+                </h4>
                 {category.hasPromotion && <Dollar className="text-green-500" />}
               </div>
               <p className="text-xs font-semibold text-neutral-500">

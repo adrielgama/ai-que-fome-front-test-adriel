@@ -69,8 +69,9 @@ function HeaderSection({ name, logo }: Pick<Restaurant, 'name' | 'logo'>) {
         width={36}
         height={36}
         className="rounded-xs object-cover ring-2 ring-neutral-100"
+        aria-label="Logo do restaurante"
       />
-      <h1 className="text-2xl font-bold">{name}</h1>
+      <h1 className="text-xl font-extrabold">{name}</h1>
     </div>
   )
 }
@@ -80,7 +81,10 @@ function ActionSection() {
     <div className="flex items-center justify-between p-1">
       <div className="flex items-center gap-3 text-purple-500 transition-colors">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger
+            data-slot="dropdown-menu-trigger"
+            aria-label="Compartilhar"
+          >
             <Share2
               className="rotate-180 cursor-pointer hover:text-purple-500/80"
               size={ICON_SIZES.share}

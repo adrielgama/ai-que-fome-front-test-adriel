@@ -14,6 +14,7 @@ export default function RestaurantHeader({
     <Link
       href={`/restaurante/${restaurant.slug}`}
       className="flex items-center gap-2 p-4"
+      aria-label="Restaurante selecionado"
     >
       <Image
         src={restaurant.logo ?? ''}

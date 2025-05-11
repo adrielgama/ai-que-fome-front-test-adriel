@@ -31,7 +31,7 @@ export async function generateMetadata({
 export default async function RestaurantePage({
   params,
 }: RestaurantePageParams) {
-  const { slug } = params
+  const { slug } = await params
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
   const categories = await getRestaurantProducts(slug)
 

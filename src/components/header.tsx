@@ -9,7 +9,7 @@ export default function Header() {
     <header className="h-20 bg-purple-500 px-4 pt-4 text-white">
       <div className="flex items-center justify-between gap-6 lg:container lg:mx-auto">
         <div className="flex items-center gap-6 md:gap-12">
-          <Link href="/">
+          <Link href="/" aria-label="Ir para página inicial">
             <AiqBranding />
           </Link>
           <div className="flex items-center gap-2.5">

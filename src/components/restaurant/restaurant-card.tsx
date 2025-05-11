@@ -20,7 +20,10 @@ export default function RestaurantCard({ restaurant }: Props) {
     restaurant
 
   return (
-    <Link href={`/restaurante/${restaurant.slug}`}>
+    <Link
+      href={`/restaurante/${restaurant.slug}`}
+      aria-label="Ir para restaurante"
+    >
       <div className="flex h-[4.5rem] items-center gap-3 rounded-lg bg-neutral-50 transition hover:bg-neutral-100">
         <Image
           src={logo}

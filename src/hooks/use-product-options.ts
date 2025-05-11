@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-
+import { debounce } from 'lodash'
 import { Product } from '@/types/products'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useProductStore } from '@/store/product-store'
@@ -17,7 +17,7 @@ export function useProductOptions(product: Product) {
   const [selectedDrinks, setSelectedDrinks] = useState<Record<string, number>>(
     {}
   )
-  const [notes, setNotes] = useState('')
+  const [notes, setNotesState] = useState('')
   const [isEditLoaded, setIsEditLoaded] = useState(false)
 
   const { addToTicket, setPendingFooter, removeFromTicket } = useProductStore()
@@ -25,6 +25,13 @@ export function useProductOptions(product: Product) {
   const searchParams = useSearchParams()
 
   const editingId = searchParams?.get('edit')
+
+  const setNotes = useCallback(
+    debounce((value: string) => {
+      setNotesState(value)
+    }, 200),
+    []
+  )
 
   useEffect(() => {
     if (!isEditLoaded && editingId) {

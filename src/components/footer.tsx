@@ -16,12 +16,12 @@ export default function Footer({ showAction = false, onAction }: FooterProps) {
   return (
     <footer className="space-y-4 bg-neutral-100 px-4 py-6">
       {showAction && !isOnCartPage ? (
-        <div>
+        <div className="md:flex md:flex-col md:items-center md:gap-3 lg:container lg:mx-auto">
           <p className="text-center text-sm font-bold text-purple-700">
             feito com 💜 em maringá-PR
           </p>
           <Button
-            className="w-full"
+            className="w-full md:max-w-xs"
             size="xl"
             variant="aiquefome"
             onClick={onAction}
