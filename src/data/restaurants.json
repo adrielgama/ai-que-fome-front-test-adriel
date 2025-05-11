@@ -439,7 +439,38 @@
         "id": 4,
         "name": "Bebidas",
         "slug": "bebidas",
-        "products": []
+        "products": [
+          {
+            "id": 9,
+            "name": "Coca-cola",
+            "price": 5,
+            "categoryId": 4
+          },
+          {
+            "id": 10,
+            "name": "Fanta laranja",
+            "price": 5,
+            "categoryId": 4
+          },
+          {
+            "id": 11,
+            "name": "Guaraná antártica",
+            "price": 5,
+            "categoryId": 4
+          },
+          {
+            "id": 12,
+            "name": "Suco prats laranja",
+            "price": 6,
+            "categoryId": 4
+          },
+          {
+            "id": 13,
+            "name": "Água sem gás",
+            "price": 3,
+            "categoryId": 4
+          }
+        ]
       },
       {
         "id": 5,

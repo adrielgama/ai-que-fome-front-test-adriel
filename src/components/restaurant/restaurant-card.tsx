@@ -1,13 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import { Restaurant } from '@/types/restaurants'
-import { Bike } from '../icons/bike'
-import { Star } from '../icons/star'
-import { Delivery } from '../icons/delivery'
+import Link from 'next/link'
+
 import { formatCurrency } from '@/lib/formatter'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
+import { Restaurant } from '@/types/restaurants'
+
+import { Bike } from '../icons/bike'
+import { Delivery } from '../icons/delivery'
+import { Star } from '../icons/star'
 
 type Props = {
   restaurant: Restaurant

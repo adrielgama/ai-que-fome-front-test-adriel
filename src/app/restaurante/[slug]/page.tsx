@@ -1,14 +1,15 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import { Restaurant } from '@/types/restaurants'
 import restaurants from '@/data/restaurants.json'
-import RestaurantHeader from './_components/restaurant-header'
-import CategoriesList from './_components/categories-list'
 import { getRestaurantProducts } from '@/lib/get-restaurant-products'
+import { Restaurant } from '@/types/restaurants'
+
+import CategoriesList from './_components/categories-list'
+import RestaurantHeader from './_components/restaurant-header'
 import ClientRestaurantLoader from './_components/restaurant-loader'
 
-type Params = {
+type RestaurantePageParams = {
   params: { slug: string }
 }
 
@@ -21,13 +22,16 @@ export async function generateMetadata({
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
 
   return {
-    title: `Restaurante ${restaurant?.name}`,
+    title: restaurant
+      ? `Restaurante ${restaurant.name}`
+      : 'Restaurante não encontrado',
   }
 }
 
-export default async function RestaurantePage({ params }: Params) {
+export default async function RestaurantePage({
+  params,
+}: RestaurantePageParams) {
   const { slug } = params
-
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
   const categories = await getRestaurantProducts(slug)
 

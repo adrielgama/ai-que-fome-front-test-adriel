@@ -1,28 +1,29 @@
 'use client'
 
-import { useState } from 'react'
+import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
-import { Product } from '@/types/products'
-import { formatCurrency } from '@/lib/formatter'
-import { Button } from '@/components/ui/button'
-import { Trash2, CirclePlus } from 'lucide-react'
+
 import { Plus } from '@/components/icons/plus'
+import { Button } from '@/components/ui/button'
+import { formatCurrency } from '@/lib/formatter'
+import { Product } from '@/types/products'
 
 interface DetailHeaderProps {
   product: Product
+  quantity: number
+  total: number
+  onIncrease?: () => void
+  onDecrease?: () => void
 }
 
-export default function DetailHeader({ product }: DetailHeaderProps) {
-  const [quantity, setQuantity] = useState(0)
-
-  const unitPrice = product.price
-  const total = quantity === 0 ? unitPrice : unitPrice * quantity
-
-  const increase = () => setQuantity((q) => q + 1)
-  const decrease = () => {
-    if (quantity === 1) setQuantity(0)
-    else if (quantity > 1) setQuantity((q) => q - 1)
-  }
+export default function DetailHeader({
+  product,
+  quantity,
+  total,
+  onIncrease,
+  onDecrease,
+}: DetailHeaderProps) {
+  const unitPrice = product.discount || product.price
 
   return (
     <div className="border-b-4 border-neutral-100">
@@ -65,7 +66,7 @@ export default function DetailHeader({ product }: DetailHeaderProps) {
           </div>
 
           {quantity === 0 ? (
-            <Button onClick={increase} size="lg" className="bg-neutral-500">
+            <Button onClick={onIncrease} size="lg" className="bg-neutral-500">
               adicionar
             </Button>
           ) : (
@@ -73,7 +74,7 @@ export default function DetailHeader({ product }: DetailHeaderProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={decrease}
+                onClick={onDecrease}
                 className="size-6 text-teal-400 hover:bg-transparent hover:text-teal-500/80"
                 asChild
               >
@@ -85,7 +86,7 @@ export default function DetailHeader({ product }: DetailHeaderProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={increase}
+                onClick={onIncrease}
                 className="size-6 text-teal-400 hover:bg-transparent hover:text-teal-500/80"
                 asChild
               >

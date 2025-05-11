@@ -1,4 +1,3 @@
-import { Dollar } from '@/components/icons/dollar'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { formatCurrency } from '@/lib/formatter'

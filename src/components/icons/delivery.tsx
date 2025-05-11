@@ -1,6 +1,5 @@
-import { IconGraphicProps } from '@/types/icon'
-
 import { cn } from '@/lib/utils'
+import { IconGraphicProps } from '@/types/icon'
 
 const Delivery = ({ className, size, ...props }: IconGraphicProps) => {
   const computedProps = size

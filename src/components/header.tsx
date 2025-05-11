@@ -1,7 +1,8 @@
 import { ChevronRight, MapPin } from 'lucide-react'
+import Link from 'next/link'
+
 import { AiqBranding } from './icons/aiqbranding'
 import { User as UserIcon } from './icons/user'
-import Link from 'next/link'
 
 export default function Header() {
   return (

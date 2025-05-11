@@ -1,22 +1,40 @@
-'use client'
-
 import dynamic from 'next/dynamic'
-import { use } from 'react'
+import { notFound } from 'next/navigation'
 
-const ProductDetail = dynamic(() => import('./_components/product-detail'), {
-  ssr: false,
-})
+import restaurants from '@/data/restaurants.json'
+import { Product } from '@/types/products'
+import { useMemo } from 'react'
 
-export default function Page({
-  params,
-}: {
-  params: Promise<{ slug: string; product: string }>
-}) {
-  const { product } = use(params)
+const ProductDetail = dynamic(() => import('./_components/product-detail'))
+
+interface ProductPageParams {
+  params: { slug: string; product: string }
+}
+
+export default function ProductPage({ params }: ProductPageParams) {
+  const { slug, product } = params
+  const restaurant = restaurants.find((r) => r.slug === slug)
+
+  if (!restaurant) return notFound()
+
+  const allProducts =
+    restaurant.categories?.flatMap((c) => {
+      if (!Array.isArray(c.products)) return []
+      return c.products.map((p) => ({
+        ...p,
+        categoryId: p.categoryId ?? c.id,
+      })) as Product[]
+    }) ?? []
+
+  const found = allProducts?.find((p) => p.id === Number(product))
+
+  const memoizedProduct = useMemo(() => found, [found])
+
+  if (!memoizedProduct) return notFound()
 
   return (
     <div className="flex-grow lg:container lg:mx-auto">
-      <ProductDetail productId={product} />
+      <ProductDetail product={memoizedProduct} restaurantSlug={slug} />
     </div>
   )
 }

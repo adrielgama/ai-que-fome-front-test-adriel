@@ -1,13 +1,16 @@
-import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
+
+import FooterWrapper from '@/components/footer-wrapper'
 import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { ProgressProviderWrapper } from '@/providers/progress'
+
+import type { Metadata } from 'next'
 
 import './globals.css'
 
 const inter = Nunito({
   subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -24,12 +27,12 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body
-        className={`${inter.className} flex min-h-screen flex-col antialiased`}
+        className={`${inter.className} flex min-h-screen flex-col bg-white text-neutral-900 antialiased`}
       >
         <ProgressProviderWrapper>
           <Header />
-          {children}
-          <Footer />
+          <main className="flex-grow">{children}</main>
+          <FooterWrapper />
         </ProgressProviderWrapper>
       </body>
     </html>

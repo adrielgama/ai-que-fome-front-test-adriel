@@ -1,11 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useProductStore } from '@/store/product-store'
+import { Textarea } from '@/components/ui/textarea'
+import { useProductOptions } from '@/hooks/use-product-options'
 import { Product } from '@/types/products'
-import { useRouter } from 'next/navigation'
-import DetailHeader from './detail-header'
-import DetailSection from './detail-section'
+
 import {
   AccompanimentsSection,
   DrinkSection,
@@ -13,132 +11,190 @@ import {
   SizesSection,
   UtensilsSection,
 } from './detail'
-import { Textarea } from '@/components/ui/textarea'
+import DetailHeader from './detail-header'
+import DetailSection from './detail-section'
+import { useEffect, useState } from 'react'
+import { TicketItem, useProductStore } from '@/store/product-store'
+import { useSearchParams } from 'next/navigation'
 
 interface ProductDetailClientProps {
-  productId: string
+  product: Product
+  restaurantSlug: string
 }
 
-export default function ProductDetail({ productId }: ProductDetailClientProps) {
-  const { products } = useProductStore()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [selectedAccompaniments, setSelectedAccompaniments] = useState<
-    string[]
-  >([])
-  const [selectedOthers, setSelectedOthers] = useState<string[]>([])
-  const [selectedDrinks, setSelectedDrinks] = useState<Record<string, number>>(
-    {}
-  )
-  const [selectedSize, setSelectedSize] = useState<string>('')
-  const [selectedUtensils, setSelectedUtensils] = useState<string>('')
-  const router = useRouter()
+export default function ProductDetail({ product }: ProductDetailClientProps) {
+  const searchParams = useSearchParams()
+  const editId = searchParams.get('edit')
+  const { addToTicket, setPendingFooter } = useProductStore()
+  const [isEditLoaded, setIsEditLoaded] = useState(false)
+  const [isAdding, setIsAdding] = useState(false)
 
-  const incrementDrink = (name: string) => {
-    setSelectedDrinks((prev) => ({
-      ...prev,
-      [name]: (prev[name] || 0) + 1,
-    }))
-  }
-
-  const decrementDrink = (name: string) => {
-    setSelectedDrinks((prev) => {
-      const current = prev[name] || 0
-      if (current <= 0) return prev
-
-      const updated = { ...prev, [name]: current - 1 }
-      if (updated[name] === 0) delete updated[name]
-      return updated
-    })
-  }
+  const {
+    quantity,
+    setQuantity,
+    total,
+    selectedSize,
+    selectedDrinks,
+    setSelectedDrinks,
+    selectedAccompaniments,
+    selectedOthers,
+    selectedUtensils,
+    incrementDrink,
+    decrementDrink,
+    notes,
+    setSelectedSize,
+    setSelectedAccompaniments,
+    setSelectedOthers,
+    setSelectedUtensils,
+    setNotes,
+    increaseQuantity,
+    decreaseQuantity,
+    hasRequiredOptions,
+    confirmAndGoToCart,
+  } = useProductOptions(product)
 
   useEffect(() => {
-    const found = products.find((p) => p.id === Number(productId))
-    if (!found) {
-      router.push('/404')
-    } else {
-      setProduct(found)
-      setSelectedSize(found.options?.sizes?.[0]?.label || '')
-      setSelectedAccompaniments([])
+    if (editId && !isEditLoaded) {
+      const editingItem = sessionStorage.getItem('editingItem')
+      if (editingItem) {
+        const item: TicketItem = JSON.parse(editingItem)
+        setQuantity(item.quantity)
+        setSelectedSize(item.selectedSize || '')
+        setSelectedAccompaniments(item.selectedAccompaniments || [])
+        setSelectedOthers(item.selectedOthers || [])
+        setSelectedUtensils(item.selectedUtensils || '')
+        setNotes(item.notes || '')
+        setSelectedDrinks(item.selectedDrinks || {})
+        setIsEditLoaded(true)
+      }
     }
-  }, [productId, products, router])
+  }, [
+    editId,
+    isEditLoaded,
+    setQuantity,
+    setSelectedSize,
+    setSelectedAccompaniments,
+    setSelectedOthers,
+    setSelectedUtensils,
+    setNotes,
+    setSelectedDrinks,
+  ])
 
-  if (!products.length) {
-    return (
-      <p className="p-4 text-center text-sm text-neutral-500">
-        Carregando produto...
-      </p>
-    )
-  }
+  useEffect(() => {
+    if (hasRequiredOptions) {
+      setPendingFooter({
+        onConfirm: () => {
+          if (isAdding) return
+          setIsAdding(true)
+          confirmAndGoToCart()
+          setTimeout(() => setIsAdding(false), 1000)
+        },
+      })
+    } else {
+      setPendingFooter(null)
+    }
 
-  if (!product) return null
+    return () => setPendingFooter(null)
+  }, [
+    hasRequiredOptions,
+    isAdding,
+    confirmAndGoToCart,
+    addToTicket,
+    product,
+    quantity,
+    selectedSize,
+    selectedDrinks,
+    selectedAccompaniments,
+    selectedOthers,
+    selectedUtensils,
+    notes,
+  ])
 
   return (
     <main>
-      <DetailHeader product={product} />
+      <DetailHeader
+        product={product}
+        onIncrease={increaseQuantity}
+        onDecrease={decreaseQuantity}
+        total={total}
+        quantity={quantity}
+      />
       {/* Tamanho */}
-      <DetailSection title="qual o tamanho?" description="escolha 1" required>
-        <SizesSection
-          sizes={product.options?.sizes ?? []}
-          selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
-        />
-      </DetailSection>
+      {product.options?.sizes && (
+        <DetailSection title="qual o tamanho?" description="escolha 1" required>
+          <SizesSection
+            sizes={product.options?.sizes ?? []}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+          />
+        </DetailSection>
+      )}
 
       {/* Acompanhamentos */}
-      <DetailSection
-        title="acompanhamentos"
-        description="escolha de 1 a 2"
-        required
-      >
-        <AccompanimentsSection
-          accompaniments={product.options?.accompaniments ?? []}
-          selected={selectedAccompaniments}
-          setSelected={setSelectedAccompaniments}
-        />
-      </DetailSection>
+      {product.options?.accompaniments && (
+        <DetailSection
+          title="acompanhamentos"
+          description="escolha de 1 a 2"
+          required
+        >
+          <AccompanimentsSection
+            accompaniments={product.options?.accompaniments ?? []}
+            selected={selectedAccompaniments}
+            setSelected={setSelectedAccompaniments}
+          />
+        </DetailSection>
+      )}
 
       {/* Bebidas */}
-      <DetailSection
-        title="vai querer bebida?"
-        description="escolha quantos quiser"
-      >
-        <div className="space-y-3">
-          {product.options?.drinks?.map((drink) => (
-            <DrinkSection
-              key={drink.name}
-              name={drink.name}
-              price={drink.price}
-              quantity={selectedDrinks[drink.name] || 0}
-              onIncrease={() => incrementDrink(drink.name)}
-              onDecrease={() => decrementDrink(drink.name)}
-            />
-          ))}
-        </div>
-      </DetailSection>
+      {product.options?.drinks && (
+        <DetailSection
+          title="vai querer bebida?"
+          description="escolha quantos quiser"
+        >
+          <div className="space-y-3">
+            {product.options?.drinks?.map((drink) => (
+              <DrinkSection
+                key={drink.name}
+                name={drink.name}
+                price={drink.price}
+                quantity={selectedDrinks[drink.name] || 0}
+                onIncrease={() => incrementDrink(drink.name)}
+                onDecrease={() => decrementDrink(drink.name)}
+              />
+            ))}
+          </div>
+        </DetailSection>
+      )}
 
       {/* Utensilios */}
-      <DetailSection title="precisa de talher?" description="escolha até 1">
-        <UtensilsSection
-          utensils={product.options?.utensils ?? []}
-          selectedUtensils={selectedUtensils}
-          setSelectedUtensils={setSelectedUtensils}
-        />
-      </DetailSection>
+      {product.options?.utensils && (
+        <DetailSection title="precisa de talher?" description="escolha até 1">
+          <UtensilsSection
+            utensils={product.options?.utensils ?? []}
+            selectedUtensils={selectedUtensils}
+            setSelectedUtensils={setSelectedUtensils}
+          />
+        </DetailSection>
+      )}
 
       {/* Outros */}
-      <DetailSection title="mais alguma coisa?" description="escolha até 2">
-        <OthersSection
-          others={product.options?.others ?? []}
-          selectedOthers={selectedOthers}
-          setSelectedOthers={setSelectedOthers}
-        />
-      </DetailSection>
+      {product.options?.others && (
+        <DetailSection title="mais alguma coisa?" description="escolha até 2">
+          <OthersSection
+            others={product.options?.others ?? []}
+            selectedOthers={selectedOthers}
+            setSelectedOthers={setSelectedOthers}
+          />
+        </DetailSection>
+      )}
 
-      <div className="mb-16 px-4">
+      <div className="mt-4 mb-16 px-4">
         <Textarea
           placeholder="alguma observação do item? • opcional
 ex: tirar algum ingrediente, ponto do prato"
           className="resize-none rounded-sm border-neutral-200 px-3 py-2.5 shadow-none placeholder:text-sm placeholder:font-semibold placeholder:text-neutral-500"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
         />
       </div>
     </main>

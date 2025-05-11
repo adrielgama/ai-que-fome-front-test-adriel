@@ -1,8 +1,8 @@
 type IconProps = React.SVGAttributes<SVGElement> & {
-  size?: string | number;
-  color?: string;
-};
+  size?: string | number
+  color?: string
+}
 
-type IconGraphicProps = Omit<IconProps, "color">;
+type IconGraphicProps = Omit<IconProps, 'color'>
 
-export type { IconProps, IconGraphicProps };
+export type { IconProps, IconGraphicProps }

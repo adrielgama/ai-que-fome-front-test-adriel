@@ -1,3 +1,8 @@
+'use client'
+import { useEffect } from 'react'
+
+import { useSearchParams } from 'next/navigation'
+
 import { Dollar } from '@/components/icons/dollar'
 import {
   Accordion,
@@ -6,6 +11,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Category } from '@/types/products'
+
 import ProductList from './product-list'
 
 interface CategoriesListProps {
@@ -13,12 +19,23 @@ interface CategoriesListProps {
 }
 
 export default function CategoriesList({ categories }: CategoriesListProps) {
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const slug = searchParams.get('categoria')
+    if (slug) {
+      const el = document.getElementById(`categoria-${slug}`)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [searchParams])
+
   return (
     <Accordion type="single" collapsible className="space-y-4">
       {categories.map((category) => (
         <AccordionItem
           key={category.id}
           value={category.name}
+          id={`categoria-${category.slug}`}
           className="rounded-none !border-b-4 border-neutral-100"
         >
           <AccordionTrigger className="hover:bg-neutral-50/50 hover:no-underline lg:cursor-pointer">

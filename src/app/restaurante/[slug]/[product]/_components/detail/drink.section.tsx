@@ -23,7 +23,7 @@ export function DrinkSection({
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" onClick={onDecrease}>
-            <Minus className="size-6" />
+            <Minus className="size-6 text-neutral-400" />
           </Button>
           <p className="flex w-2 justify-center text-sm font-bold text-neutral-700">
             {quantity}

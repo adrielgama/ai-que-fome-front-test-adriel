@@ -1,7 +1,8 @@
 'use client'
 
-import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
+
 import { Dollar } from '@/components/icons/dollar'
 import { Spiced } from '@/components/icons/spiced'
 import { Vegan } from '@/components/icons/vegan'

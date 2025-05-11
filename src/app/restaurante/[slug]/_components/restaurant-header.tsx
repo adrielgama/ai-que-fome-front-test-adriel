@@ -1,3 +1,6 @@
+import { ChevronRight, Heart, Share2 } from 'lucide-react'
+import Image from 'next/image'
+
 import CopyLinkButton from '@/components/copy-link-button'
 import { Bike } from '@/components/icons/bike'
 import { Star } from '@/components/icons/star'
@@ -9,8 +12,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { formatCurrency } from '@/lib/formatter'
 import { Restaurant } from '@/types/restaurants'
-import { ChevronRight, Heart, Share2 } from 'lucide-react'
-import Image from 'next/image'
 
 interface RestaurantHeaderProps {
   restaurant: Restaurant
@@ -79,7 +80,7 @@ function ActionSection() {
     <div className="flex items-center justify-between p-1">
       <div className="flex items-center gap-3 text-purple-500 transition-colors">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger>
             <Share2
               className="rotate-180 cursor-pointer hover:text-purple-500/80"
               size={ICON_SIZES.share}

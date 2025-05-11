@@ -2,6 +2,7 @@
 
 import restaurants from '@/data/restaurants.json'
 import { Restaurant } from '@/types/restaurants'
+
 import RestaurantCard from './restaurant-card'
 
 export default function RestaurantList() {
