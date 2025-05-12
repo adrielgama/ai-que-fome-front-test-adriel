@@ -9,7 +9,7 @@ interface AddMoreItemsProps {
 export default function AddMoreItems({ slug }: AddMoreItemsProps) {
   return (
     <Link
-      href={`/restaurante/${slug}`}
+      href={`/restaurant/${slug}`}
       className="flex items-center justify-center gap-2 pb-6"
       aria-label="Adicionar mais produtos"
     >

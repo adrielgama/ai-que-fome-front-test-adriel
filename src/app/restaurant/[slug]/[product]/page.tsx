@@ -10,8 +10,8 @@ interface ProductPageParams {
   params: { slug: string; product: string }
 }
 
-export default async function ProductPage({ params }: ProductPageParams) {
-  const { slug, product } = await params
+export default function ProductPage({ params }: ProductPageParams) {
+  const { slug, product } = params
   const restaurant = restaurants.find((r) => r.slug === slug)
 
   if (!restaurant) return notFound()

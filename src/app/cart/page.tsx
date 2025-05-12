@@ -48,7 +48,7 @@ export default function CartPage() {
       sessionStorage.setItem('editingItem', JSON.stringify(sessionData))
 
       router.push(
-        `/restaurante/${restaurant?.slug}/${item.id}?edit=${item.uniqueId}`
+        `/restaurant/${restaurant?.slug}/${item.id}?edit=${item.uniqueId}`
       )
     },
     [restaurant?.slug, removeFromTicket, router, setPendingFooter]

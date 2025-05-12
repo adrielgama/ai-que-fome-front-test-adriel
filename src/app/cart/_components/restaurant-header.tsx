@@ -12,7 +12,7 @@ export default function RestaurantHeader({
 
   return (
     <Link
-      href={`/restaurante/${restaurant.slug}`}
+      href={`/restaurant/${restaurant.slug}`}
       className="flex items-center gap-2 p-4"
       aria-label="Restaurante selecionado"
     >

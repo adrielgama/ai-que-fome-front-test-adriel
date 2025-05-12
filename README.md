@@ -13,7 +13,7 @@ Uma aplicação web responsiva que simula a experiência de um usuário selecion
 - Adição de produtos ao "ticket" com controle preciso de quantidade e variações.
 - Visualização, edição e exclusão de itens no ticket.
 - Validação de pedido mínimo e cálculo dinâmico de frete com base em regras da loja.
-- Deep linking (ex: `/restaurante/matsuri-concept/1?edit=UUID`) para edição direta do produto.
+- Deep linking (ex: `/restaurant/matsuri-concept/1?edit=UUID`) para edição direta do produto.
 - Compartilhamento direto do restaurante via URL para facilitar navegação entre usuários.
 - Persistência no `localStorage` para restaurante e ticket.
 - Otimizações para mobile (interações, carregamento, performance).
@@ -60,13 +60,13 @@ Uma aplicação web responsiva que simula a experiência de um usuário selecion
 A página de detalhes do produto suporta edição direta com o parâmetro `edit` na URL. Exemplo:
 
 ```
-/restaurante/matsuri-concept/1?edit=9ab23e1c-89f5-4a6d
+/restaurant/matsuri-concept/1?edit=9ab23e1c-89f5-4a6d
 ```
 
 Esse link carrega automaticamente o produto com os dados previamente inseridos no ticket (armazenados no `sessionStorage`) para edição fluida.
 
 ```
-/restaurante/matsuri-concept
+/restaurant/matsuri-concept
 ```
 
 Também é possível compartilhar diretamente a URL de um restaurante, permitindo o redirecionamento direto para a página de produtos da loja correspondente.

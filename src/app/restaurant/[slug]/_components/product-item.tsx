@@ -53,7 +53,7 @@ export const ProductItem = ({ product }: { product: Product }) => {
   )
 
   return (
-    <Link href={`/restaurante/${slug}/${product.id}`} aria-label="Produto">
+    <Link href={`/restaurant/${slug}/${product.id}`} aria-label="Produto">
       <div className="flex w-full items-center justify-between gap-4 p-2">
         <div>
           <div className="flex items-center gap-1">
