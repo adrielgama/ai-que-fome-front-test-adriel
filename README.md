@@ -91,7 +91,7 @@ cd ai-que-fome-front-test-adriel
 2. Instale as dependências
 
 ```bash
-pnpm # ou npm install
+pnpm install # ou npm install
 ```
 
 3. Rode o servidor local
