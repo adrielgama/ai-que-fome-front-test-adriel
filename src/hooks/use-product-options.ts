@@ -1,10 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { debounce } from 'lodash'
-import { Product } from '@/types/products'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+
 import { useProductStore } from '@/store/product-store'
+import { Product } from '@/types/products'
 
 export function useProductOptions(product: Product) {
   const [quantity, setQuantity] = useState(0)
@@ -17,8 +17,7 @@ export function useProductOptions(product: Product) {
   const [selectedDrinks, setSelectedDrinks] = useState<Record<string, number>>(
     {}
   )
-  const [notes, setNotesState] = useState('')
-  const [isEditLoaded, setIsEditLoaded] = useState(false)
+  const [notes, setNotes] = useState('')
 
   const { addToTicket, setPendingFooter, removeFromTicket } = useProductStore()
   const router = useRouter()
@@ -26,15 +25,8 @@ export function useProductOptions(product: Product) {
 
   const editingId = searchParams?.get('edit')
 
-  const setNotes = useCallback(
-    debounce((value: string) => {
-      setNotesState(value)
-    }, 200),
-    []
-  )
-
   useEffect(() => {
-    if (!isEditLoaded && editingId) {
+    if (editingId) {
       const stored = sessionStorage.getItem('editingItem')
       if (stored) {
         try {
@@ -47,20 +39,16 @@ export function useProductOptions(product: Product) {
             setSelectedUtensils(parsed.selectedUtensils || '')
             setSelectedDrinks(parsed.selectedDrinks || {})
             setNotes(parsed.notes || '')
-            setIsEditLoaded(true)
           }
         } catch (e) {
           console.error('Erro ao restaurar item do sessionStorage:', e)
         }
       }
     }
-  }, [editingId, product, isEditLoaded])
+  }, [editingId, product, setNotes])
 
   const incrementDrink = (name: string) => {
-    setSelectedDrinks((prev) => ({
-      ...prev,
-      [name]: (prev[name] || 0) + 1,
-    }))
+    setSelectedDrinks((prev) => ({ ...prev, [name]: (prev[name] || 0) + 1 }))
   }
 
   const decrementDrink = (name: string) => {
@@ -128,6 +116,7 @@ export function useProductOptions(product: Product) {
       editingId: editingId || undefined,
     }),
     [
+      editingId,
       product,
       quantity,
       selectedSize,
@@ -150,7 +139,14 @@ export function useProductOptions(product: Product) {
 
     addToTicket({ ...item, options: product.options })
     router.push('/cart')
-  }, [hasRequiredOptions, getTicketItem, removeFromTicket, addToTicket, router])
+  }, [
+    hasRequiredOptions,
+    getTicketItem,
+    removeFromTicket,
+    addToTicket,
+    router,
+    product.options,
+  ])
 
   useEffect(() => {
     setSelectedSize(product.options?.sizes?.[0]?.label || '')
@@ -164,7 +160,7 @@ export function useProductOptions(product: Product) {
     }
 
     return () => setPendingFooter(null)
-  }, [hasRequiredOptions, confirmAndGoToCart])
+  }, [hasRequiredOptions, confirmAndGoToCart, setPendingFooter])
 
   return {
     quantity,

@@ -1,16 +1,18 @@
 'use client'
 
 import { useCallback, useEffect, useMemo } from 'react'
+
 import { useRouter } from 'next/navigation'
+
+import { useCartCalculations } from '@/hooks/use-cart-calc'
 import { TicketItem, useProductStore } from '@/store/product-store'
 import { useRestaurantStore } from '@/store/restaurant-store'
 
-import RestaurantHeader from './_components/restaurant-header'
+import AddMoreItems from './_components/add-more-items'
 import CartSummary from './_components/cart-summary'
 import EmptyCart from './_components/empty-cart'
-import AddMoreItems from './_components/add-more-items'
-import { CartItem } from './_components/items'
-import { useCartCalculations } from '@/hooks/use-cart-calc'
+import { CartItem } from './_components/item'
+import RestaurantHeader from './_components/restaurant-header'
 
 export default function CartPage() {
   const {
@@ -28,11 +30,8 @@ export default function CartPage() {
     [ticket]
   )
   const {
-    subtotal,
     meetsFreeDelivery,
     meetsMinimumOrder,
-    deliveryFee,
-    finalTotal,
     formattedFinalTotal,
     formattedDeliveryFee,
     formattedMinimumOrder,

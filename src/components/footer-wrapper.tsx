@@ -1,7 +1,8 @@
 'use client'
 
-import Footer from './footer'
 import { useProductStore } from '@/store/product-store'
+
+import Footer from './footer'
 
 export default function FooterWrapper() {
   const { pendingFooter } = useProductStore()

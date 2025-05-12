@@ -26,9 +26,9 @@ export function UtensilsSection({
           className="flex w-full items-center justify-between space-x-2 px-2"
         >
           <div className="flex items-center gap-2.5">
-            <RadioGroupItem value={utensils.name} id={`r${index}`} />
+            <RadioGroupItem value={utensils.name} id={`r-utensils${index}`} />
             <Label
-              htmlFor={`r${index}`}
+              htmlFor={`r-utensils${index}`}
               className="flex items-center gap-2.5 text-sm text-neutral-500"
             >
               {utensils.name.toLocaleLowerCase()}

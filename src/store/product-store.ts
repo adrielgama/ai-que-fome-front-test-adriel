@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { v4 as uuidv4 } from 'uuid'
 
 import { Product } from '@/types/products'
 
@@ -37,7 +38,7 @@ export const useProductStore = create<ProductState>()(
       ticket: [],
       addToTicket: (item) => {
         if (item.quantity === 0) return
-        const uniqueId = crypto.randomUUID()
+        const uniqueId = uuidv4()
         const newItem = { ...item, uniqueId, options: item.options }
         set({ ticket: [...get().ticket, newItem] })
       },

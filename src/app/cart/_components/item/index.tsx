@@ -1,8 +1,9 @@
 import { TicketItem } from '@/store/product-store'
-import { CartItemHeader } from './header'
+
 import { CartItemActions } from './actions'
-import { CartItemOptions } from './options'
+import { CartItemHeader } from './header'
 import { CartItemNotes } from './notes'
+import { CartItemOptions } from './options'
 
 interface CartItemProps {
   item: TicketItem

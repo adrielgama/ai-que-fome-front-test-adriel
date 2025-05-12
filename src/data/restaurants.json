@@ -91,7 +91,7 @@
           {
             "id": 2,
             "name": "Ceviche de salmão",
-            "image": "/images/ceviche.png",
+            "image": "/images/ceviche.webp",
             "price": 19.90,
             "description": "salmão temperado com limão, cebola e pimenta",
             "options": {

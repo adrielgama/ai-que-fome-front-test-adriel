@@ -4,17 +4,14 @@ import { useEffect } from 'react'
 
 import { useProductStore } from '@/store/product-store'
 import { useRestaurantStore } from '@/store/restaurant-store'
-import { Category } from '@/types/products'
 import { Restaurant } from '@/types/restaurants'
 
 interface ClientRestaurantLoaderProps {
   restaurant: Restaurant
-  categories: Category[]
 }
 
 export default function ClientRestaurantLoader({
   restaurant,
-  categories,
 }: ClientRestaurantLoaderProps) {
   const { ticket, clearTicket } = useProductStore()
   const { restaurant: currentRestaurant, setRestaurant } = useRestaurantStore()

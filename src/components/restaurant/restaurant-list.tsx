@@ -5,11 +5,19 @@ import { Restaurant } from '@/types/restaurants'
 
 import RestaurantCard from './restaurant-card'
 
-export default function RestaurantList() {
+export default function RestaurantList({
+  searchQuery,
+}: {
+  searchQuery: string
+}) {
   const restaurantList = restaurants as Restaurant[]
 
-  const open = restaurantList.filter((s) => s.isOpen)
-  const closed = restaurantList.filter((s) => !s.isOpen)
+  const filteredRestaurants = restaurantList.filter((restaurant) =>
+    restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
+  const open = filteredRestaurants.filter((s) => s.isOpen)
+  const closed = filteredRestaurants.filter((s) => !s.isOpen)
 
   return (
     <div className="space-y-4 px-4 py-6">

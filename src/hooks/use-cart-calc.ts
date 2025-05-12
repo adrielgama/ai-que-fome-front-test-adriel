@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
-import { TicketItem, useProductStore } from '@/store/product-store'
+
 import { formatCurrency } from '@/lib/formatter'
+import { TicketItem, useProductStore } from '@/store/product-store'
 
 interface Restaurant {
   freeDeliveryThreshold?: number

@@ -1,5 +1,7 @@
 'use client'
 
+import { memo, useMemo } from 'react'
+
 import { Trash2 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -7,7 +9,6 @@ import { Plus } from '@/components/icons/plus'
 import { Button } from '@/components/ui/button'
 import { formatCurrency } from '@/lib/formatter'
 import { Product } from '@/types/products'
-import { memo, useMemo } from 'react'
 
 interface DetailHeaderProps {
   product: Product

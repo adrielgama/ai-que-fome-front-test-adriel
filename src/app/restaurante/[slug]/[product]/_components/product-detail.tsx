@@ -1,7 +1,12 @@
 'use client'
 
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
+import { useSearchParams } from 'next/navigation'
+
 import { Textarea } from '@/components/ui/textarea'
 import { useProductOptions } from '@/hooks/use-product-options'
+import { TicketItem, useProductStore } from '@/store/product-store'
 import { Product } from '@/types/products'
 
 import {
@@ -13,9 +18,6 @@ import {
 } from './detail'
 import DetailHeader from './detail-header'
 import DetailSection from './detail-section'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { TicketItem, useProductStore } from '@/store/product-store'
-import { useSearchParams } from 'next/navigation'
 
 interface ProductDetailClientProps {
   product: Product

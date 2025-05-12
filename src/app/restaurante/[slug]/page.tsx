@@ -1,13 +1,22 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 
 import restaurants from '@/data/restaurants.json'
 import { getRestaurantProducts } from '@/lib/get-restaurant-products'
 import { Restaurant } from '@/types/restaurants'
 
-import CategoriesList from './_components/categories-list'
-import RestaurantHeader from './_components/restaurant-header'
-import ClientRestaurantLoader from './_components/restaurant-loader'
+const ClientRestaurantLoader = dynamic(
+  () => import('./_components/restaurant-loader'),
+  { ssr: true }
+)
+const RestaurantHeader = dynamic(
+  () => import('./_components/restaurant-header'),
+  { ssr: true }
+)
+const CategoriesList = dynamic(() => import('./_components/categories-list'), {
+  ssr: true,
+})
 
 type RestaurantePageParams = {
   params: { slug: string }
@@ -39,8 +48,9 @@ export default async function RestaurantePage({
 
   return (
     <main className="flex-grow space-y-6 p-4 lg:container lg:mx-auto">
-      <ClientRestaurantLoader restaurant={restaurant} categories={categories} />
+      <ClientRestaurantLoader restaurant={restaurant} />
       <RestaurantHeader restaurant={restaurant} />
+
       <CategoriesList categories={categories} />
     </main>
   )

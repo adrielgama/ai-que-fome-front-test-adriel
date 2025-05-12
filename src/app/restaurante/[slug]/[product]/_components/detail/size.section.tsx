@@ -30,9 +30,9 @@ export function SizesSection({
             className="flex w-full items-center justify-between space-x-2 px-2"
           >
             <div className="flex items-center gap-2.5">
-              <RadioGroupItem value={size.label} id={`r${index}`} />
+              <RadioGroupItem value={size.label} id={`r-size${index}`} />
               <Label
-                htmlFor={`r${index}`}
+                htmlFor={`r-size${index}`}
                 className="flex items-center gap-2.5 text-sm text-neutral-500"
               >
                 {hasDiscount && <Dollar size={18} className="text-green-500" />}

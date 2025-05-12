@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+
 import { Button } from './ui/button'
 
 interface FooterProps {

@@ -1,8 +1,9 @@
 import { Pencil, Trash2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { TicketItem } from '@/store/product-store'
+
 import { Minus } from '@/components/icons/minus'
 import { Plus } from '@/components/icons/plus'
+import { Button } from '@/components/ui/button'
+import { TicketItem } from '@/store/product-store'
 
 interface CartItemActionsProps {
   item: TicketItem
