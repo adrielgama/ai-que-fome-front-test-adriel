@@ -26,6 +26,7 @@ export default function Footer({ showAction = false, onAction }: FooterProps) {
             size="xl"
             variant="aiquefome"
             onClick={onAction}
+            aria-label="Ver ticket"
           >
             ver ticket
           </Button>

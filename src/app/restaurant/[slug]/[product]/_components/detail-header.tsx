@@ -72,7 +72,12 @@ const DetailHeader = memo(function DetailHeader({
           </div>
 
           {quantity === 0 ? (
-            <Button onClick={onIncrease} size="lg" className="bg-neutral-500">
+            <Button
+              onClick={onIncrease}
+              size="lg"
+              className="bg-neutral-500"
+              aria-label="Adicionar produto"
+            >
               adicionar
             </Button>
           ) : (

@@ -30,7 +30,12 @@ export default function CartSummary({
           )}
         </div>
 
-        <Button size="xl" variant="aiquefome" disabled={!meetsMinimumOrder}>
+        <Button
+          size="xl"
+          variant="aiquefome"
+          disabled={!meetsMinimumOrder}
+          aria-label="Ir para pagamento"
+        >
           {meetsMinimumOrder
             ? 'ir para pagamento'
             : `mínimo de ${formattedMinimumOrder}`}

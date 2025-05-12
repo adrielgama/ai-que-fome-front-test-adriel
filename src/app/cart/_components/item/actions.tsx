@@ -24,6 +24,7 @@ export function CartItemActions({
         variant="ghost"
         onClick={() => onEdit(item)}
         className="text-sm font-bold text-teal-400"
+        aria-label="Editar produto"
       >
         <Pencil className="size-2.5" />
         editar
@@ -34,6 +35,7 @@ export function CartItemActions({
           variant="ghost"
           className="px-0 has-[>svg]:mx-3 has-[>svg]:px-0"
           onClick={() => onDecrement(item.uniqueId)}
+          aria-label="Remover produto"
         >
           {item.quantity <= 1 ? (
             <Minus
@@ -51,6 +53,7 @@ export function CartItemActions({
           variant="ghost"
           className="px-0 has-[>svg]:ml-3 has-[>svg]:px-0"
           onClick={() => onIncrement(item.uniqueId)}
+          aria-label="Adicionar produto"
         >
           <Plus className="size-5 text-teal-400" />
         </Button>
