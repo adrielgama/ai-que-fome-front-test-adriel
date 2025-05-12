@@ -3,15 +3,25 @@ import { notFound } from 'next/navigation'
 
 import restaurants from '@/data/restaurants.json'
 import { Product } from '@/types/products'
+import { Restaurant } from '@/types/restaurants'
 
 const ProductDetail = dynamic(() => import('./_components/product-detail'))
 
-interface ProductPageParams {
-  params: { slug: string; product: string }
+type Params = Promise<{ slug: string; product: string }>
+
+export async function generateMetadata({ params }: { params: Params }) {
+  const { slug } = await params
+  const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
+
+  return {
+    title: restaurant
+      ? `Restaurante ${restaurant.name} - ${restaurant.categories[0].products[0].name}`
+      : 'Restaurante não encontrado',
+  }
 }
 
-export default function ProductPage({ params }: ProductPageParams) {
-  const { slug, product } = params
+export default async function ProductPage({ params }: { params: Params }) {
+  const { slug, product } = await params
   const restaurant = restaurants.find((r) => r.slug === slug)
 
   if (!restaurant) return notFound()
@@ -31,7 +41,7 @@ export default function ProductPage({ params }: ProductPageParams) {
 
   return (
     <div className="flex-grow lg:container lg:mx-auto">
-      <ProductDetail product={found} restaurantSlug={slug} />
+      <ProductDetail product={found} />
     </div>
   )
 }

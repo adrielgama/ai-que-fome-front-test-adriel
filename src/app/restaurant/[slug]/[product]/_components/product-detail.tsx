@@ -21,7 +21,6 @@ import DetailSection from './detail-section'
 
 interface ProductDetailClientProps {
   product: Product
-  restaurantSlug: string
 }
 
 export default function ProductDetail({ product }: ProductDetailClientProps) {

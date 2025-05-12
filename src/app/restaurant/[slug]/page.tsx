@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 
@@ -7,26 +6,16 @@ import { getRestaurantProducts } from '@/lib/get-restaurant-products'
 import { Restaurant } from '@/types/restaurants'
 
 const ClientRestaurantLoader = dynamic(
-  () => import('./_components/restaurant-loader'),
-  { ssr: true }
+  () => import('./_components/restaurant-loader')
 )
 const RestaurantHeader = dynamic(
-  () => import('./_components/restaurant-header'),
-  { ssr: true }
+  () => import('./_components/restaurant-header')
 )
-const CategoriesList = dynamic(() => import('./_components/categories-list'), {
-  ssr: true,
-})
+const CategoriesList = dynamic(() => import('./_components/categories-list'))
 
-type RestaurantePageParams = {
-  params: { slug: string }
-}
+type Params = Promise<{ slug: string }>
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
 
@@ -37,9 +26,11 @@ export async function generateMetadata({
   }
 }
 
-export default async function RestaurantePage({
+export default async function RestaurantePageWrapper({
   params,
-}: RestaurantePageParams) {
+}: {
+  params: Params
+}) {
   const { slug } = await params
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
   const categories = await getRestaurantProducts(slug)
@@ -47,10 +38,9 @@ export default async function RestaurantePage({
   if (!restaurant || !categories) return notFound()
 
   return (
-    <main className="flex-grow space-y-6 p-4 lg:container lg:mx-auto">
+    <main className="flex-grow">
       <ClientRestaurantLoader restaurant={restaurant} />
       <RestaurantHeader restaurant={restaurant} />
-
       <CategoriesList categories={categories} />
     </main>
   )
