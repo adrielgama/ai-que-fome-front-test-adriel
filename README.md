@@ -3,6 +3,7 @@
 Este projeto foi desenvolvido como parte do processo seletivo para a vaga de **Engenheiro(a) de Software Front-End Sênior (React e Next.js)** da **L2L Aiqfome**, com foco em experiência mobile, fluidez de interface e uso otimizado de Server Components.
 
 ![PageSpeed Insights](public/images/pagespeed-insights.png)
+
 [PageSpeed Insights](https://pagespeed.web.dev/analysis/https-ai-que-fome-frontend-test-adriel-gama-vercel-app/2sgj6iyqx3?form_factor=mobile)
 
 ## Objetivo
