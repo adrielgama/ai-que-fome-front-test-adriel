@@ -38,7 +38,7 @@ export default async function RestaurantePageWrapper({
   if (!restaurant || !categories) return notFound()
 
   return (
-    <main className="flex-grow">
+    <main className="flex-grow p-4 lg:container lg:mx-auto">
       <ClientRestaurantLoader restaurant={restaurant} />
       <RestaurantHeader restaurant={restaurant} />
       <CategoriesList categories={categories} />

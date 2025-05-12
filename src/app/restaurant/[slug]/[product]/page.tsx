@@ -10,13 +10,28 @@ const ProductDetail = dynamic(() => import('./_components/product-detail'))
 type Params = Promise<{ slug: string; product: string }>
 
 export async function generateMetadata({ params }: { params: Params }) {
-  const { slug } = await params
+  const { slug, product } = await params
   const restaurant = (restaurants as Restaurant[]).find((r) => r.slug === slug)
 
+  if (!restaurant) {
+    return { title: 'Restaurante não encontrado' }
+  }
+
+  const allProducts =
+    restaurant.categories?.flatMap((c) => {
+      if (!Array.isArray(c.products)) return []
+      return c.products.map((p) => ({
+        ...p,
+        categoryId: p.categoryId ?? c.id,
+      })) as Product[]
+    }) ?? []
+
+  const found = allProducts.find((p) => p.id === Number(product))
+
   return {
-    title: restaurant
-      ? `Restaurante ${restaurant.name} - ${restaurant.categories[0].products[0].name}`
-      : 'Restaurante não encontrado',
+    title: found
+      ? `Restaurante ${restaurant.name} - ${found.name}`
+      : `Restaurante ${restaurant.name}`,
   }
 }
 
